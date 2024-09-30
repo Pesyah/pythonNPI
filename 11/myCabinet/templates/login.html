@@ -14,17 +14,21 @@
     <p>Please login to see this page.</p>
   {% endif %}
 {% endif %}
+<script>
+  {{ alert }}
+</script>
 
-<div style="max-width: 40vw; margin-left: 30vw; margin-top: 15vh; border: 3px solid black; padding: 4vw; border-radius: 50px;">
-  <form method="post" action="/login">
+<script>
+  function login() {}
+</script>
+<div style="max-width: 40vw; margin-left: 30vw; margin-top: 15vh; border: 3px solid grey; padding: 4vw; border-radius: 50px;">
+  <form method="post" action="/login/">
     {% csrf_token %}
     <br/>
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      <label for="exampleInputEmail1" class="form-label">Username</label>
+      <input type="username" class="form-control" id="exampleInputEmail1">
     </div>
-    <br/>
     <br/>
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Password</label>
