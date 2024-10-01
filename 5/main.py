@@ -11,19 +11,14 @@ import os
 def foo(fileName, tag):
     with open(fileName, 'r') as f:
         file = f.read()
-        # не совсем понял задание, сделал из расчета
-        # что ищу только те теги, которые были И закрыты И открыты
-        # не считаю одиноко стоящие
-        tags = min([file.count(f'<{tag}>'), file.count(f'</{tag}>')])
-        tags_bad = max([file.count(f'<{tag}>'), file.count(f'</{tag}>')])
-        return f'количество ВЕРНЫХ тегов - {tags}, всех в т.ч. НЕВЕРНЫХ - {tags_bad}'
+        tags = min([file.count(f'<{tag}'), file.count(f'</{tag}>')])
+        return f'количество ВЕРНЫХ тегов <{tag}> - {tags}'
 
 print(foo(os.getcwd() + '\\5\\main.html', 'p'))
-print(foo(os.getcwd() + '\\5\\main.html', 'h1'))
+print(foo(os.getcwd() + '\\5\\main.html', 'h2'))
 print(foo(os.getcwd() + '\\5\\main.html', 'article'))
 
 """
 Для теста можно зайти в файлик и добавить рандомно местами
-<p> или </p>, что увеличит кол-во неверных тегов,
-или <p></p>, что увеличит кол-во неверных !И! верных тегов
+<p> или </p>,
 """

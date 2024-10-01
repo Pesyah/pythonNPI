@@ -15,27 +15,43 @@
   {% endif %}
 {% endif %}
 <script>
-  {{ alert }}
+  async function login() {
+    data = {
+      username: document.getElementById('exampleInputEmail1').textContent,
+      password: document.getElementById('exampleInputPassword1').textContent,
+    }
+    const response = await fetch('http://localhost:8000/login/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    console.log(response)
+    if (response.status == 401) {
+      alert("Неверный логин или пароль")
+    }
+  }
 </script>
-
-<script>
-  function login() {}
+  <script>
+    {{ alert }}
 </script>
 <div style="max-width: 40vw; margin-left: 30vw; margin-top: 15vh; border: 3px solid grey; padding: 4vw; border-radius: 50px;">
-  <form method="post" action="/login/">
-    {% csrf_token %}
+  <div>
+    <p style="margin-left: 15vw"> Вход </p>
     <br/>
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Username</label>
+      <label for="exampleInputEmail1" class="form-label">Логин</label>
       <input type="username" class="form-control" id="exampleInputEmail1">
     </div>
     <br/>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <label for="exampleInputPassword1" class="form-label">Пароль</label>
       <input type="password" class="form-control" id="exampleInputPassword1">
     </div>
-    <input class="btn btn-primary" type="submit" value="login" />
+    <button class="btn btn-primary" onClick="login()">Войти</button>
     <br/>
-  </form>
+    <p>Нет аккаунта? <a href='/login'>зарегестрироваться</a></p>
+  </div>
 </div>
 {% endblock %}
